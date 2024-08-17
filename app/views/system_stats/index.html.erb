@@ -1,0 +1,50 @@
+<main class="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
+  <h1 class="text-3xl font-bold mb-6 text-gray-800">Raspberry Pi</h1>
+
+  <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+    <div class="mb-4 border-b pb-2">
+      <h2 class="text-xl font-semibold text-gray-700">System Information</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="space-y-2">
+        <% [
+          ["Hostname", @system_info[:hostname]],
+          ["Platform", @system_info[:platform]],
+          ["Architecture", @system_info[:architecture]],
+          ["CPU Temperature", "#{@system_info[:cpu_temp].to_f.round(1)}°C"]
+        ].each do |label, value| %>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600"><%= label %>:</span>
+            <span class="text-gray-800 font-medium"><%= value %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-semibold text-gray-700">CPU Usage</h3>
+        <% @system_info[:cpu_usage].each_with_index do |usage, index| %>
+          <div class="space-y-1">
+            <div class="flex justify-between text-sm text-gray-600">
+              <span>Core <%= index %></span>
+              <span><%= usage %>%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-600 h-2 rounded-full" style="width: <%= usage %>%"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-semibold text-gray-700">Memory Usage</h3>
+        <div class="flex justify-between text-sm text-gray-600">
+          <span>Used</span>
+          <span><%= @system_info[:memory_usage][:used].to_f.round(2) %> / <%= @system_info[:memory_usage][:total].to_f.round(2) %> GB</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div class="bg-green-600 h-2 rounded-full" style="width: <%= (@system_info[:memory_usage][:used] / @system_info[:memory_usage][:total]) * 100 %>%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
