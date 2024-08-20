@@ -54,7 +54,14 @@ make clean all
 ```
 sudo make install
 ```
-Step 4 - Camera and MJPEG configuration.
+
+Step 4 - Install screen. 
+
+```
+sudo apt install screen
+```
+
+Step 5 - Camera and MJPEG configuration.
 
 First check if your webcam is supported on Raspberry Pi 
 
@@ -75,7 +82,7 @@ Note: If your webcam device is not set to be on /dev/video0 by default, you will
 ./mjpg_streamer -i "/usr/local/lib/mjpg-streamer/input_uvc.so -y -d /dev/video2 -n -f 6 -r 640x480" -o "/usr/local/lib/mjpg-streamer/output_http.so -p 8085 -w /usr/local/share/mjpg-streamer/www"
 ```
 
-Step 5 - Install Ruby on Rails (RoR).
+Step 6 - Install Ruby on Rails (RoR).
 
 Ruby on Rails requires several dependencies. Install them with the following command:
 ```
@@ -92,9 +99,9 @@ rvm install 3.2.2
 rvm use 3.2.2 --default
 ```
 
-Step 6 - Clone this repo and set it up on your raspberry.
+Step 7 - Clone this repo and set it up on your raspberry.
 
-Step 7 - All done. Now just run the server with 
+Step 8 - All done. Now just run the server with 
 ```
 rails s
 ```
