@@ -1,6 +1,6 @@
-require 'sys/cpu'
-require 'sys/uname'
-require 'json'
+require "sys/cpu"
+require "sys/uname"
+require "json"
 
 class SystemStatsController < ApplicationController
   def index
@@ -23,7 +23,7 @@ class SystemStatsController < ApplicationController
   def get_cpu_temperature
     # You may need to adapt this depending on your system setup
     # For example, reading from a file that holds the CPU temperature
-    File.read('/sys/class/thermal/thermal_zone0/temp').to_i / 1000.0
+    File.read("/sys/class/thermal/thermal_zone0/temp").to_i / 1000.0
   end
 
   def get_cpu_usage
