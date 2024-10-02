@@ -121,4 +121,6 @@ nano config/environments/development.rb
 Scroll to the bottom of the file (or anywhere appropriate) and add the following line:
 ```
 config.hosts << "raspberrypi.local:3000"
+
+side note: yeah chat gpt wrote all that , wah wah
 ```
